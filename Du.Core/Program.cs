@@ -1,6 +1,7 @@
 using CSRedis;
 using Du.Core.Config;
 using Du.SocketService;
+using Du.SocketService.Server;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -14,7 +15,6 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 });
 
-
 builder.Host.ConfigureLogging(
     (hosttingContext, logging) =>
     {
@@ -22,8 +22,7 @@ builder.Host.ConfigureLogging(
         logging.AddLog4Net();
     });
 
-builder.Services.AddSingleton<SocketService>();
-builder.Services.AddHostedService(sp => sp.GetRequiredService<SocketService>());
+builder.Host.AddSuperSocket();
 
 var app = builder.Build();
 var config = app.Services.GetRequiredService<IOptions<AppSetting>>();
@@ -47,15 +46,15 @@ if (Convert.ToBoolean(config.Value.UseRedis))
 }
 
 app.MapControllers();
-app.MapGet("/run/{id:int}", ([FromServices] SocketService host ,int id) =>
+app.MapGet("/run/{id:int}", ([FromServices] SimpleServer<Package> server, int id) =>
 {
     if (id == 1)
     {
-        var result = host.StopAsync(new CancellationToken());
+        var result = server.StopAsync(new CancellationToken());
     }
     else
     {
-        var result = host.StartAsync(new CancellationToken());
+        var result = server.StartAsync(new CancellationToken());
     }
     return "ok";
 });
