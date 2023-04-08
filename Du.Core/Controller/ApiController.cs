@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using SuperSocket;
 
-namespace Du.SuperSocket;
+namespace Du.Core.Controller;
 
 [Route("api/[action]")]
 [ApiController]
@@ -26,14 +26,14 @@ public class ApiController : ControllerBase
     public dynamic Session()
     {
         var sessions = _sessions.GetSessions();
-        var query = (from item in sessions
+        var query = from item in sessions
                      select new
                      {
                          item.SessionID,
                          item.StartTime,
                          item.LastActiveTime,
                          Ip = ((IPEndPoint)item.RemoteEndPoint).Address.ToString() + ":" + ((IPEndPoint)item.RemoteEndPoint).Port,
-                     });
+                     };
         return query;
         //return sessions.Select(item => new
         //{

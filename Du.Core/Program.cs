@@ -10,10 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 var dllFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 Directory.SetCurrentDirectory(dllFolder);
 builder.Configuration.SetBasePath(dllFolder);
+
 //读取参数
 builder.Services.Configure<AppSetting>(builder.Configuration.GetSection("AppSetting"));
 //json格式化
-builder.Services.AddControllers().AddNewtonsoftJson(options =>
+builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -51,6 +52,7 @@ if (Convert.ToBoolean(config.Value.UseRedis))
     //builder.Services.AddSingleton<IDistributedCache>(new Microsoft.Extensions.Caching.Redis.CSRedisCache(RedisHelper.Instance));
 }
 
+app.UseRouting();
+app.UseAuthorization();
 app.MapControllers();
-app.MapGet("/", () => DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 await app.RunAsync();
