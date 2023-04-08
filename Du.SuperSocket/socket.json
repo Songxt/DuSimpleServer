@@ -1,0 +1,14 @@
+{
+  "ServerOptions": {
+    "Name": "TestServer",
+    "Id": 101, 
+    "ClearIdleSessionInterval": 10,
+    "IdleSessionTimeOut": 300,
+    "Listeners": [
+      {
+        "Ip": "Any",
+        "Port": 1040
+      }
+    ]
+  }
+}

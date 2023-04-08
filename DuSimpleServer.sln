@@ -4,13 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{0887E142-3428-4881-9674-511F12E704AA}"
-	ProjectSection(SolutionItems) = preProject
-		Du.SuperSocket\log4net.config = Du.SuperSocket\log4net.config
-	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Du.Core", "Du.Core\Du.Core.csproj", "{CDF9F5AB-D64C-4F72-9949-540322539952}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Du.Core", "Du.Core\Du.Core.csproj", "{CDF9F5AB-D64C-4F72-9949-540322539952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Du.SocketService", "Du.SocketService\Du.SocketService.csproj", "{1E4858B1-D98C-4ED3-AABD-D305FD2F4C12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Du.SuperSocket", "Du.SuperSocket\Du.SuperSocket.csproj", "{1E4858B1-D98C-4ED3-AABD-D305FD2F4C12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Du.Netty", "Du.Netty\Du.Netty.csproj", "{39FFA51A-C044-4961-9478-9CBE1B5A3A51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Du.Mqtt", "Du.Mqtt\Du.Mqtt.csproj", "{C4051C74-8004-4C6B-9BEA-3158068027C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Du.SignalR", "Du.SignalR\Du.SignalR.csproj", "{10714B23-17B1-47F6-A2CD-99F008F43013}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +29,18 @@ Global
 		{1E4858B1-D98C-4ED3-AABD-D305FD2F4C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E4858B1-D98C-4ED3-AABD-D305FD2F4C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E4858B1-D98C-4ED3-AABD-D305FD2F4C12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39FFA51A-C044-4961-9478-9CBE1B5A3A51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39FFA51A-C044-4961-9478-9CBE1B5A3A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39FFA51A-C044-4961-9478-9CBE1B5A3A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39FFA51A-C044-4961-9478-9CBE1B5A3A51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4051C74-8004-4C6B-9BEA-3158068027C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4051C74-8004-4C6B-9BEA-3158068027C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4051C74-8004-4C6B-9BEA-3158068027C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4051C74-8004-4C6B-9BEA-3158068027C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10714B23-17B1-47F6-A2CD-99F008F43013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10714B23-17B1-47F6-A2CD-99F008F43013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10714B23-17B1-47F6-A2CD-99F008F43013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10714B23-17B1-47F6-A2CD-99F008F43013}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

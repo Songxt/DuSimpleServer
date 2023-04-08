@@ -2,7 +2,7 @@
 using SuperSocket.Channel;
 using SuperSocket.Server;
 
-namespace Du.SocketService.Server
+namespace Du.SuperSocket.Server
 {
     public class SimpleSession : AppSession
     {

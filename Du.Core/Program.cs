@@ -1,30 +1,36 @@
 using CSRedis;
 using Du.Core.Config;
-using Du.SocketService;
-using Du.SocketService.Server;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
-//builder.Configuration.AddJsonFile("socket.json", false, false);
+
+//设置当前路径
+var dllFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+Directory.SetCurrentDirectory(dllFolder);
+builder.Configuration.SetBasePath(dllFolder);
+//读取参数
 builder.Services.Configure<AppSetting>(builder.Configuration.GetSection("AppSetting"));
+//json格式化
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 });
-
+//配置日志
 builder.Host.ConfigureLogging(
     (hosttingContext, logging) =>
     {
         logging.ClearProviders();
         logging.AddLog4Net();
     });
-
+//调用服务
 builder.Host.AddSuperSocket();
 
 var app = builder.Build();
+
+//调用Redis
 var config = app.Services.GetRequiredService<IOptions<AppSetting>>();
 if (Convert.ToBoolean(config.Value.UseRedis))
 {
@@ -46,19 +52,5 @@ if (Convert.ToBoolean(config.Value.UseRedis))
 }
 
 app.MapControllers();
-app.MapGet("/run/{id:int}", ([FromServices] SimpleServer<Package> server, int id) =>
-{
-    if (id == 1)
-    {
-        var result = server.StopAsync(new CancellationToken());
-    }
-    else
-    {
-        var result = server.StartAsync(new CancellationToken());
-    }
-    return "ok";
-});
-
-app.MapGet("/", () => { return "OK"; });
-
+app.MapGet("/", () => DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 await app.RunAsync();

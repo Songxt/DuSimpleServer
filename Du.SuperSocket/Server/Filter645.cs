@@ -1,7 +1,7 @@
 ﻿using System.Buffers;
 using SuperSocket.ProtoBase;
 
-namespace Du.SocketService.Server
+namespace Du.SuperSocket.Server
 {
     public class Filter645 : PipelineFilterBase<Package>
     {

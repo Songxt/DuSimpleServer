@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <BaseOutputPath>..\Bin</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Du.SocketService\Du.SocketService.csproj" />
+    <ProjectReference Include="..\Du.Mqtt\Du.Mqtt.csproj" />
+    <ProjectReference Include="..\Du.Netty\Du.Netty.csproj" />
+    <ProjectReference Include="..\Du.SignalR\Du.SignalR.csproj" />
+    <ProjectReference Include="..\Du.SuperSocket\Du.SuperSocket.csproj" />
+    <ProjectReference Include="..\Du.SuperSocket\Du.SuperSocket.csproj" />
   </ItemGroup>
 
 </Project>

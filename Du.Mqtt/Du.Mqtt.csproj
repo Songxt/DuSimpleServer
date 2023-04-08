@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CSRedisCore" Version="3.8.670" />
-    <PackageReference Include="SuperSocket" Version="2.0.0-beta.15" />
-  </ItemGroup>
-
 </Project>

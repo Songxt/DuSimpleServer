@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
-using Du.SocketService.Cmd;
-using Du.SocketService.Server;
+using Du.SuperSocket.Cmd;
+using Du.SuperSocket.Server;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using SuperSocket;
 using SuperSocket.Command;
@@ -12,7 +13,11 @@ public static class SuperSocketExtensions
 {
     public static void AddSuperSocket(this IHostBuilder host)
     {
-        host.AsSuperSocketHostBuilder<Package, SimpleFilter>()
+        host.ConfigureAppConfiguration(((context, builder) =>
+            {
+                builder.AddJsonFile("socket.json", false, false);
+            }))
+            .AsSuperSocketHostBuilder<Package, SimpleFilter>()
             //.ConfigureSuperSocket(options =>
             //{
             //    options.ClearIdleSessionInterval = 2;

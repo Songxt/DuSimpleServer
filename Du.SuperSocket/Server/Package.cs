@@ -1,6 +1,6 @@
 ﻿using SuperSocket.ProtoBase;
 
-namespace Du.SocketService.Server
+namespace Du.SuperSocket.Server
 {
     public class Package : IKeyedPackageInfo<string>
     {
